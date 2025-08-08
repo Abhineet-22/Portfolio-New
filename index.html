@@ -777,17 +777,22 @@
             const templateParams = {
                 name: formData.get('name'),
                 email: formData.get('email'),
-                title: formData.get('message'),
-                to_email: 'abhineetagr2003@gmail.com',
-                reply_to: formData.get('email') // User's email for replies
+                message: formData.get('message'), // Make sure this matches your form field
+                to_email: 'abhineetagr2003@gmail.com' // Add your email
             };
-
-            console.log('Sending email with params:', templateParams); // Debug log
-
-            // Send email
-            emailjs.send('service_wp7vs14', 'template_07zob35', templateParams)
+            
+            console.log('Sending email with params:', templateParams);
+            
+            // Send to you first
+            emailjs.send('service_wp7vs14', 'template_ijuj30d', templateParams)
                 .then(function (response) {
-                    console.log('SUCCESS!', response.status, response.text);
+                    console.log('Email sent to you successfully!', response);
+                    
+                    // Then send auto-reply to user
+                    return emailjs.send('service_wp7vs14', 'template_07zob35', templateParams);
+                })
+                .then(function (response) {
+                    console.log('Auto-reply sent successfully!', response);
                     alert('Thank you for your message! I\'ll get back to you soon.');
                     document.querySelector('.contact-form').reset();
                 })
@@ -796,11 +801,9 @@
                     alert('Sorry, there was an error sending your message. Please try again.');
                 })
                 .finally(function() {
-                    // Re-enable submit button
                     submitBtn.disabled = false;
                     submitBtn.textContent = originalText;
                 });
-        });
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function (e) {
@@ -815,5 +818,6 @@
 </body>
 
 </html>
+
 
 
