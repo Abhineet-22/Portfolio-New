@@ -775,9 +775,11 @@
             // Get form data
             const formData = new FormData(this);
             const templateParams = {
-                name: formData.get('name'),        // Changed from 'from_name' to 'name'
-                email: formData.get('email'),      // Changed from 'from_email' to 'email'
-                title: formData.get('message')     // Changed from 'message' to 'title'
+                name: formData.get('name'),
+                email: formData.get('email'),
+                message: formData.get('message'),
+                to_email: 'abhineetagr2003@gmail.com',
+                reply_to: formData.get('email') // User's email for replies
             };
 
             console.log('Sending email with params:', templateParams); // Debug log
@@ -813,3 +815,4 @@
 </body>
 
 </html>
+
