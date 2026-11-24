@@ -58,9 +58,9 @@
         header.appendChild(closeBtn);
 
         // Active embedding sink (<object> browsing context)
+        // Replace the embed block in preview.js with this standard dynamic loader:
         const embed = document.createElement('object');
         embed.setAttribute('data', previewAsset);
-        embed.setAttribute('type', 'image/png');
         embed.style.cssText = 'width: 100%; height: 420px; border-radius: 8px; border: 1px solid #1f2937; background: #030712;';
 
         modal.appendChild(header);
